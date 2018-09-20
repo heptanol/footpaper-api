@@ -11,5 +11,12 @@
 |
 */
 
+$router->get('/', function () {
+    return 'hello world';
+});
 
+$router->get('/competitions/{id}/matches', 'Controller@getCompetionMatches');
+$router->get('/competitions/{id}/standings', 'Controller@getCompetionStanding');
+$router->get('/matches', 'Controller@getMatches');
 $router->get('/{url:.+}', 'Controller@call');
+
