@@ -17,11 +17,17 @@ class AppService
      * @param $stage
      * @return string
      */
-    public function getCompetionMatches($id, $matchday, $stage)
+    public function getCompetionMatches($id, $matchday, $stage = null)
     {
         $uri = str_replace('{id}', $id, $this->competitionMatches);
 
         $result = app(HttpClient::class)->getRessources($uri);
+
+        if (isset($stage)) {
+            $result = app(Mapping::class)->filterByStage(json_decode($result), $stage);
+
+            return json_encode($result);
+        }
 
         $result = app(Mapping::class)->filterByMatchDay(json_decode($result), $matchday);
 

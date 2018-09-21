@@ -26,6 +26,18 @@ class Mapping
         return $data;
     }
 
+    public function filterByStage($data, $stage)
+    {
+        $matches = array();
+        foreach ($data->matches as $match) {
+            if ($match->stage == $stage) {
+                $matches[] = $this->matchMapping($match);
+            }
+        }
+        $data->matches = $matches;
+        return $data;
+    }
+
     /**
      * @param array $standings
      * @return mixed
