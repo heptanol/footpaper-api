@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\AppService;
+use App\HttpClient;
 use App\Mapping;
 use App\Providers\AppServiceProvider;
 use App\User;
@@ -15,6 +17,17 @@ use GuzzleHttp\Client;
 
 class Controller extends BaseController
 {
+    private $httpClient;
+
+    /**
+     * Controller constructor.
+     */
+    public function __construct()
+    {
+        $this->httpClient = new Client(['headers' => ['X-Auth-Token' => 'a7c8f168d2f14f02bd678f24fa05aff0']]);
+    }
+
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -40,16 +53,37 @@ class Controller extends BaseController
         );
     }
 
-    public function getCompetionMatches($id)
+    public function getCompetionMatches(Request $request, $id)
     {
-        var_dump(app(Mapping::class));die;
+        $response = app(AppService::class)
+            ->getCompetionMatches($id, $request->query->get('matchday'), $request->query->get('stage'));
+
+        return \response()->json(
+            json_decode($response),
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
     }
 
-    public function getCompetionStanding($id, array $query)
+    public function getCompetionStanding($id)
     {
+        $response = app(AppService::class)->getCompetionStanding($id);
+
+        return \response()->json(
+            json_decode($response),
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
     }
 
-    public function getMatches()
+    public function getTodayMatches()
     {
+        $response = app(AppService::class)->getTodayMatches();
+
+        return \response()->json(
+            json_decode($response),
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
     }
 }

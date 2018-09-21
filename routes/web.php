@@ -17,6 +17,5 @@ $router->get('/', function () {
 
 $router->get('/competitions/{id}/matches', 'Controller@getCompetionMatches');
 $router->get('/competitions/{id}/standings', 'Controller@getCompetionStanding');
-$router->get('/matches', 'Controller@getMatches');
-$router->get('/{url:.+}', 'Controller@call');
+$router->get('/matches/today', 'Controller@getTodayMatches');
 
