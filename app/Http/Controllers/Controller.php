@@ -86,4 +86,15 @@ class Controller extends BaseController
             ['Access-Control-Allow-Origin' => '*']
         );
     }
+
+    public function getCompetionScorers($id)
+    {
+        $response = app(AppService::class)->getCompetitionScorers($id);
+
+        return \response()->json(
+            json_decode($response),
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
+    }
 }

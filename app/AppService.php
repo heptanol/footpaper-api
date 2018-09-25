@@ -8,6 +8,7 @@ class AppService
 
     private $competitionMatches = 'competitions/{id}/matches';
     private $competitionStanding = 'competitions/{id}/standings';
+    private $competitionScorers = 'competitions/{id}/scorers';
     private $matches = 'matches';
 
 
@@ -58,5 +59,12 @@ class AppService
         $result = app(Mapping::class)->filterTodayMatchs(json_decode($result)->matches);
 
         return json_encode($result);
+    }
+
+    public function getCompetitionScorers($id)
+    {
+        $uri = str_replace('{id}', $id, $this->competitionScorers);
+
+        return app(HttpClient::class)->getRessources($uri, 3600);
     }
 }
