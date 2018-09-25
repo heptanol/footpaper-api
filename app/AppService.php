@@ -53,7 +53,7 @@ class AppService
         );
         $uri = $this->matches .'?'. http_build_query($query);
 
-        $result = app(HttpClient::class)->getRessources($uri);
+        $result = app(HttpClient::class)->getRessources($uri, 60);
 
         $result = app(Mapping::class)->filterTodayMatchs(json_decode($result)->matches);
 
