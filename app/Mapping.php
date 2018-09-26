@@ -96,6 +96,7 @@ class Mapping
     {
         foreach ($data->matches as $match) {
             if ($match->id == $id) {
+                $match = $this->matchMapping($match);
                 return $match;
             }
         }
