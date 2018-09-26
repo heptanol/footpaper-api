@@ -89,6 +89,21 @@ class Mapping
 
     /**
      * @param $data
+     * @param $id
+     * @return null
+     */
+    public function getOneMatch($data, $id)
+    {
+        foreach ($data->matches as $match) {
+            if ($match->id == $id) {
+                return $match;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @param $data
      * @return mixed
      */
     public function getCompetition($data)

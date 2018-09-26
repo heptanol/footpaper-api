@@ -36,6 +36,22 @@ class AppService
     }
 
     /**
+     * @param $id
+     * @param $matchId
+     * @return string
+     */
+    public function getCompetionMatche($id, $matchId)
+    {
+        $uri = str_replace('{id}', $id, $this->competitionMatches);
+
+        $result = app(HttpClient::class)->getRessources($uri);
+
+        $result = app(Mapping::class)->getOneMatch(json_decode($result), $matchId);
+
+        return json_encode($result);
+    }
+
+    /**
      * @return string
      */
     public function getCompetionStanding($id)

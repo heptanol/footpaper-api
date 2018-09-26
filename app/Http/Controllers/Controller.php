@@ -97,4 +97,15 @@ class Controller extends BaseController
             ['Access-Control-Allow-Origin' => '*']
         );
     }
+
+    public function getCompetionMatche($id, $matcheId)
+    {
+        $response = app(AppService::class)->getCompetionMatche($id, $matcheId);
+
+        return \response()->json(
+            json_decode($response),
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
+    }
 }
