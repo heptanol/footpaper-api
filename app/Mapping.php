@@ -61,7 +61,10 @@ class Mapping
     {
         $day = new \DateTime($data->utcDate);
         $now = new \DateTime();
-        $diff = date_diff($now, $day)->i;
+        $diff = date_diff($now, $day)->i + (60 * date_diff($now, $day)->h);
+        if ($diff > 55) {
+            $diff = $diff - 15;
+        }
         $day->setTime(0,0,0);
         $data->day = $day->format('Y-m-d\TH:i:s\Z');
         $data->diff = $diff;
