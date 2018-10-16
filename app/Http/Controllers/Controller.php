@@ -116,11 +116,11 @@ class Controller extends BaseController
     public function getNews()
     {
         $fileContents= file_get_contents($this->soFootUrl);
+        $json = json_encode($fileContents);
         $fileContents = str_replace(array("\n", "\r", "\t"), '', $fileContents);
         $fileContents = trim(str_replace('"', "'", $fileContents));
         $simpleXml = simplexml_load_string($fileContents);
         var_dump($simpleXml);die;
-        $json = json_encode($simpleXml);
         return $json;
     }
 
