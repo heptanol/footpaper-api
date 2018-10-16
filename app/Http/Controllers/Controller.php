@@ -116,7 +116,7 @@ class Controller extends BaseController
     public function getNews()
     {
         $client = new Client();
-        $response = $client->get($this->soFootUrl);
+        $response = $client->get($this->soFootUrl)->getBody()->getContents();
         $data = $response;
         var_dump($data);die;
     }
