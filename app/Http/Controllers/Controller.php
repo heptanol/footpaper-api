@@ -115,9 +115,21 @@ class Controller extends BaseController
 
     public function getNews()
     {
-        $client = new Client();
-        $response = $client->get($this->soFootUrl)->getBody()->getContents();
-        $data = $response;
-        var_dump($data);die;
+        $fileContents= file_get_contents($this->soFootUrl);
+        $fileContents = str_replace(array("\n", "\r", "\t"), '', $fileContents);
+        $fileContents = trim(str_replace('"', "'", $fileContents));
+        $simpleXml = simplexml_load_string($fileContents);
+        $json = json_encode($simpleXml);
+        var_dump($json);die;
+        return $json;
+    }
+
+    public function Parse ($url) {
+        $fileContents= file_get_contents($url);
+        $fileContents = str_replace(array("\n", "\r", "\t"), '', $fileContents);
+        $fileContents = trim(str_replace('"', "'", $fileContents));
+        $simpleXml = simplexml_load_string($fileContents);
+        $json = json_encode($simpleXml);
+        return $json;
     }
 }
