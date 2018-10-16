@@ -117,7 +117,7 @@ class Controller extends BaseController
     {
         $client = new Client();
         $response = $client->get($this->soFootUrl);
-        $data = $response->xml();
+        $data = $response;
         var_dump($data);die;
     }
 }
