@@ -19,6 +19,10 @@ class Controller extends BaseController
 {
     private $httpClient;
 
+
+    private $soFootUrl = 'http://feeds.feedburner.com/SoFoot_news';
+    private $lequipeUrl = 'https://www.lequipe.fr/rss/actu_rss_Football.xml';
+
     /**
      * Controller constructor.
      */
@@ -107,5 +111,13 @@ class Controller extends BaseController
             200,
             ['Access-Control-Allow-Origin' => '*']
         );
+    }
+
+    public function getNews()
+    {
+        $client = new Client();
+        $response = $client->get($this->soFootUrl);
+        $data = $response->xml();
+        var_dump($data);die;
     }
 }

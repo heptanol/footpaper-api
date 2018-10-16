@@ -20,4 +20,5 @@ $router->get('/competitions/{id}/matches/{matcheId}', 'Controller@getCompetionMa
 $router->get('/competitions/{id}/standings', 'Controller@getCompetionStanding');
 $router->get('/competitions/{id}/scorers', 'Controller@getCompetionScorers');
 $router->get('/matches/today', 'Controller@getTodayMatches');
+$router->get('/news', 'Controller@getNews');
 
