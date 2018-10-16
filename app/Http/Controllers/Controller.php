@@ -116,7 +116,7 @@ class Controller extends BaseController
     public function getNews()
     {
         $feed_contents = file_get_contents($this->soFootUrl);
-        $xml = simplexml_load_string($feed_contents, LIBXML_NOCDATA);
+        $xml = simplexml_load_string($feed_contents);
         $feed_array = json_decode(json_encode($xml));
         print_r($feed_array); // Surprise!!
         die();
