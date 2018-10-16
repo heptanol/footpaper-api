@@ -119,8 +119,8 @@ class Controller extends BaseController
         $fileContents = str_replace(array("\n", "\r", "\t"), '', $fileContents);
         $fileContents = trim(str_replace('"', "'", $fileContents));
         $simpleXml = simplexml_load_string($fileContents);
+        var_dump($simpleXml);die;
         $json = json_encode($simpleXml);
-        var_dump($json);die;
         return $json;
     }
 
