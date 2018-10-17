@@ -20,9 +20,6 @@ class Controller extends BaseController
     private $httpClient;
 
 
-    private $soFootUrl = 'http://feeds.feedburner.com/SoFoot_news';
-    private $lequipeUrl = 'https://www.lequipe.fr/rss/actu_rss_Football.xml';
-
     /**
      * Controller constructor.
      */
@@ -115,10 +112,24 @@ class Controller extends BaseController
 
     public function getNews()
     {
-        $feed_contents = file_get_contents($this->soFootUrl);
-        $xml = simplexml_load_string($feed_contents);
-        $feed_array = json_decode(json_encode($xml));
-        print_r($feed_array); // Surprise!!
-        die();
+        $feeds = array(
+            "http://www.goal.com/fr/feeds/news?fmt=rss&ICID=HP",
+            "https://www.lequipe.fr/rss/actu_rss_Football.xml",
+            "https://www.eurosport.fr/football/rss.xml",
+        );
+
+        //Read each feed's items
+        $entries = array();
+        foreach($feeds as $feed) {
+            $xml = simplexml_load_file($feed);
+            $entries = array_merge($entries, $xml->xpath("//item"));
+        }
+        $response = json_encode($entries);
+
+        return \response()->json(
+            json_decode($response),
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
     }
 }
