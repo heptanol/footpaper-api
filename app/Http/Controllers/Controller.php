@@ -112,19 +112,7 @@ class Controller extends BaseController
 
     public function getNews()
     {
-        $feeds = array(
-            "http://www.goal.com/fr/feeds/news?fmt=rss&ICID=HP",
-            "https://www.lequipe.fr/rss/actu_rss_Football.xml",
-            "https://www.eurosport.fr/football/rss.xml",
-        );
-
-        //Read each feed's items
-        $entries = array();
-        foreach($feeds as $feed) {
-            $xml = simplexml_load_file($feed);
-            $entries = array_merge($entries, $xml->xpath("//item"));
-        }
-        $response = json_encode($entries);
+        $response = app(AppService::class)->getNews();
 
         return \response()->json(
             json_decode($response),

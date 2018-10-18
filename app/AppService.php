@@ -11,6 +11,12 @@ class AppService
     private $competitionScorers = 'competitions/{id}/scorers';
     private $matches = 'matches';
 
+    private $feeds = array(
+        "http://www.goal.com/fr/feeds/news?fmt=rss&ICID=HP",
+        "https://www.lequipe.fr/rss/actu_rss_Football.xml",
+        "https://www.eurosport.fr/football/rss.xml",
+    );
+
 
     /**
      * @param $id
@@ -82,5 +88,19 @@ class AppService
         $uri = str_replace('{id}', $id, $this->competitionScorers);
 
         return app(HttpClient::class)->getRessources($uri, 3600);
+    }
+
+    /**
+     * @return string
+     */
+    public function getNews()
+    {
+        $entries = array();
+        foreach($this->feeds as $feed) {
+            $xml = simplexml_load_file($feed);
+            $entries = array_merge($entries, $xml->xpath("//item"));
+        }
+
+        return json_encode($entries);
     }
 }
