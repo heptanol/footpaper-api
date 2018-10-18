@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ExampleMiddleware
+class ApiMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,6 +15,9 @@ class ExampleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if ($request->ip() == '5.135.165.128') {
+            return $next($request);
+        }
+        return response('Unauthorized',401);
     }
 }
