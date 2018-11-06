@@ -21,5 +21,5 @@ $router->get('/competitions/{id}/standings', 'Controller@getCompetionStanding');
 $router->get('/competitions/{id}/scorers', 'Controller@getCompetionScorers');
 $router->get('/matches/today', 'Controller@getTodayMatches');
 $router->get('/news', 'Controller@getNews');
-$router->get('/{url:.+}', 'Controller@call');
+$router->get('/test', 'Controller@call');
 
