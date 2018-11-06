@@ -19,9 +19,8 @@ class AppService
         ),
         'en' => array(
             "http://www.goal.com/en/feeds/news?fmt=rss&ICID=HP",
-            "https://www.90min.com/posts.rss",
-            "https://www.football365.com/feed",
-            "https://www.101greatgoals.com/feed/"
+            "https://www.eurosport.com/football/rss.xml",
+            "http://www.espnfc.com/rss"
         )
     );
 
