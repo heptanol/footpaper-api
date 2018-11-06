@@ -17,8 +17,7 @@ class Controller extends BaseController
      */
     public function __construct()
     {
-        $token = config('API_TOKEN');
-        var_dump($token);die;
+        $token = $_ENV['API_TOKEN'];
         $this->httpClient = new Client(['headers' => ['X-Auth-Token' => $token]]);
     }
 
