@@ -20,7 +20,7 @@ class AppService
         'en' => array(
             "http://www.goal.com/en/feeds/news?fmt=rss&ICID=HP",
             "https://www.eurosport.com/football/rss.xml",
-            "http://www.espnfc.com/rss"
+            "https://www.mirror.co.uk/sport/football/?service=rss"
         )
     );
 
