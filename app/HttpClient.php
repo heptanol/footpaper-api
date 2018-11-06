@@ -17,7 +17,8 @@ class HttpClient
      */
     public function __construct()
     {
-        $this->guzzleClient = new Client(['headers' => ['X-Auth-Token' => 'a7c8f168d2f14f02bd678f24fa05aff0']]);
+        $token = $_ENV['API_TOKEN'];
+        $this->httpClient = new Client(['headers' => ['X-Auth-Token' => $token]]);
     }
 
 

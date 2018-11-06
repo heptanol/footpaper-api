@@ -9,17 +9,11 @@ use GuzzleHttp\Client;
 
 class Controller extends BaseController
 {
-    private $httpClient;
-
-
     /**
      * Controller constructor.
      */
     public function __construct()
-    {
-        $token = $_ENV['API_TOKEN'];
-        $this->httpClient = new Client(['headers' => ['X-Auth-Token' => $token]]);
-    }
+    {}
 
 
     public function getCompetionMatches(Request $request, $id)
