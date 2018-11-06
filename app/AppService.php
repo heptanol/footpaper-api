@@ -12,9 +12,17 @@ class AppService
     private $matches = 'matches';
 
     private $feeds = array(
-        "http://www.goal.com/fr/feeds/news?fmt=rss&ICID=HP",
-        "https://www.lequipe.fr/rss/actu_rss_Football.xml",
-        "https://www.eurosport.fr/football/rss.xml",
+        'fr' => array(
+            "http://www.goal.com/fr/feeds/news?fmt=rss&ICID=HP",
+            "https://www.lequipe.fr/rss/actu_rss_Football.xml",
+            "https://www.eurosport.fr/football/rss.xml",
+        ),
+        'en' => array(
+            "http://www.goal.com/en/feeds/news?fmt=rss&ICID=HP",
+            "https://www.90min.com/posts.rss",
+            "https://www.football365.com/feed",
+            "https://www.101greatgoals.com/feed/"
+        )
     );
 
 
@@ -91,12 +99,13 @@ class AppService
     }
 
     /**
+     * @param $lang
      * @return string
      */
-    public function getNews()
+    public function getNews($lang)
     {
         $entries = array();
-        foreach($this->feeds as $feed) {
+        foreach($this->feeds[$lang] as $feed) {
             $xml = simplexml_load_file($feed);
             $entries = array_merge($entries, $xml->xpath("//item"));
         }

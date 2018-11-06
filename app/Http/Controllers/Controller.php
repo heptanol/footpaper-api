@@ -110,9 +110,9 @@ class Controller extends BaseController
         );
     }
 
-    public function getNews()
+    public function getNews(Request $request)
     {
-        $response = app(AppService::class)->getNews();
+        $response = app(AppService::class)->getNews($request->query->get('lang'));
 
         return \response()->json(
             json_decode($response),
