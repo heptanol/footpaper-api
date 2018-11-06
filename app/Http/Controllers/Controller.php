@@ -31,7 +31,7 @@ class Controller extends BaseController
     {
         $client = new Client(['headers' => ['X-Auth-Token' => 'a7c8f168d2f14f02bd678f24fa05aff0']]); //GuzzleHttp\Client
 
-        $result = $client->get('http://api.football-data.org/v2/' . $request->getRequestUri())
+        $result = $client->get('http://api.football-data.org' . $request->getRequestUri())
             ->getBody()->getContents();
 
         return \response()->json(
