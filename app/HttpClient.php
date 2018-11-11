@@ -57,6 +57,7 @@ class HttpClient
         } catch (\Error $error) {}
 
         if (isset($result)) {
+            $result = $result->getBody()->getContents();
             app('redis')->set($uri, $result);
             app('redis')->set('temp_'.$uri, $result);
             app('redis')->expire('temp_'.$uri, $ttl);
