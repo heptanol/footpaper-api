@@ -50,7 +50,7 @@ class HttpClient
         return $result;
     }
 
-    public function getResourceFromApi(string $uri, $ttl = 295)
+    public function getResourceFromApi(string $uri, $ttl = 300)
     {
         try {
             $result = $this->guzzleClient->get($this->apiUrl . $uri);
