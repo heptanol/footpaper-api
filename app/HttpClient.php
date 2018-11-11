@@ -49,4 +49,18 @@ class HttpClient
 
         return $result;
     }
+
+    public function getResourceFromApi(string $uri, $ttl = 295)
+    {
+        try {
+            $result = $this->guzzleClient->get($this->apiUrl . $uri);
+        } catch (\Error $error) {}
+
+        if (isset($result)) {
+            app('redis')->set($uri, $result);
+            app('redis')->set('temp_'.$uri, $result);
+            app('redis')->expire('temp_'.$uri, $ttl);
+        }
+
+    }
 }

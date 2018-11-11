@@ -11,6 +11,7 @@ namespace App\Console\Commands;
 
 use App\HttpClient;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class GetMatchesCommand extends Command
 {
@@ -53,7 +54,7 @@ class GetMatchesCommand extends Command
             $this->line("[Start] getting matches for: ". $compId);
             $uri = str_replace('{id}', $compId, $this->apiUrl);
             try {
-                app(HttpClient::class)->getRessources($uri);
+                app(HttpClient::class)->getResourceFromApi($uri);
                 $this->info("[Success] on getting matches for: ". $compId);
 
             } catch (\Error $error) {
@@ -63,5 +64,6 @@ class GetMatchesCommand extends Command
         $executionEndTime = microtime(true);
         $time = $executionEndTime-$executionStartTime;
         $this->comment("[Time] This script took ". $time ." to execute.");
+        Log::info("[Time] This script took ". $time ." to execute.");
     }
 }
