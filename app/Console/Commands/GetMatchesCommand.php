@@ -51,19 +51,14 @@ class GetMatchesCommand extends Command
         $this->line("[Start] getting All matches");
 
         foreach ($this->competitionsId as $compId) {
-            $this->line("[Start] getting matches for: ". $compId);
             $uri = str_replace('{id}', $compId, $this->apiUrl);
             try {
                 app(HttpClient::class)->getResourceFromApi($uri);
-                $this->info("[Success] on getting matches for: ". $compId);
 
-            } catch (\Error $error) {
-                $this->error("[Error] on getting matches for: ". $compId);
-            }
+            } catch (\Error $error) {}
         }
         $executionEndTime = microtime(true);
         $time = $executionEndTime-$executionStartTime;
         $this->comment("[Time] This script took ". $time ." to execute.");
-        Log::info("[Time] This script took ". $time ." to execute.");
     }
 }

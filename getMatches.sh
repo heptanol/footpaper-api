@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-php artisan get:matches
+php /var/www/footpaper-api/artisan get:matches
