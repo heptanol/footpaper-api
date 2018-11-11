@@ -15,7 +15,7 @@ class ApiMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->ip() == '81.66.180.43') {
+        if ($request->server()["HTTP_ORIGIN"] == 'http://www.footpaper.info') {
             return $next($request);
         }
         return response('Unauthorized',401);
