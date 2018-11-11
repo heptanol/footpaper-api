@@ -29,12 +29,10 @@ class GetMatchesCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Get all matches of all competitions';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * GetMatchesCommand constructor.
      */
     public function __construct()
     {
