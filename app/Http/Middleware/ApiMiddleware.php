@@ -15,7 +15,7 @@ class ApiMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->server() && $request->server()["HTTP_ORIGIN"] == 'http://www.footpaper.info') {
+        if ($request->server() && strpos($request->server()["HTTP_ORIGIN"], 'footpaper.info') !== false) {
             return $next($request);
         }
         return response('Unauthorized',401);
