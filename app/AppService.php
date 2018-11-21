@@ -8,18 +8,16 @@ class AppService
 
     private $competitionMatches = 'competitions/{id}/matches';
     private $competitionStanding = 'competitions/{id}/standings';
-    private $competitionScorers = 'competitions/{id}/scorers';
+    private $competitionScorers = 'competitions/{id}/scorers&limit=20';
     private $matches = 'matches';
 
     private $feeds = array(
         'fr' => array(
             "http://www.goal.com/fr/feeds/news?fmt=rss&ICID=HP",
             "https://www.lequipe.fr/rss/actu_rss_Football.xml",
-            "https://www.eurosport.fr/football/rss.xml",
         ),
         'en' => array(
             "http://www.goal.com/en/feeds/news?fmt=rss&ICID=HP",
-            "https://www.eurosport.com/football/rss.xml",
             "https://www.mirror.co.uk/sport/football/?service=rss"
         )
     );
