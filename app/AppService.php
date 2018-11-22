@@ -8,7 +8,7 @@ class AppService
 
     private $competitionMatches = 'competitions/{id}/matches';
     private $competitionStanding = 'competitions/{id}/standings';
-    private $competitionScorers = 'competitions/{id}/scorers&limit=20';
+    private $competitionScorers = 'competitions/{id}/scorers?limit=20';
     private $matches = 'matches';
 
     private $feeds = array(
