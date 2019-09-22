@@ -15,9 +15,10 @@ class ApiMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->server() && strpos($request->server()["HTTP_ORIGIN"], 'footpaper.info') !== false) {
-            return $next($request);
-        }
-        return response('Unauthorized',401);
+        return $next($request);
+//        if ($request->server() && strpos($request->server()["HTTP_ORIGIN"], 'footpaper.info') !== false) {
+//            return $next($request);
+//        }
+//        return response('Unauthorized',401);
     }
 }
