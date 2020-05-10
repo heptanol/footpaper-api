@@ -12,7 +12,7 @@
 */
 
 $router->get('/', function () {
-    return 'hello worldsssss';
+    return 'Hello world';
 });
 $router->get('/matches/important', 'Controller@getLastPlayedImportantMatches');
 
