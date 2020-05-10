@@ -88,6 +88,22 @@ class AppService
         return json_encode($result);
     }
 
+    public function getLastPlayedImportantMatches()
+    {
+        $now = new \DateTime();
+        $query = array(
+            'dateTo' => $now->format('Y-m-d'),
+            'dateFrom' => $now->modify('-5 days')->format('Y-m-d')
+        );
+        $uri = $this->matches .'?'. http_build_query($query);
+
+        $result = app(HttpClient::class)->getRessources($uri, 860);
+
+        $result = app(Mapping::class)->filterImportantMatchs(json_decode($result)->matches);
+
+        return json_encode($result);
+    }
+
     public function getCompetitionScorers($id)
     {
         $uri = str_replace('{id}', $id, $this->competitionScorers);

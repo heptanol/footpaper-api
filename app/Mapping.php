@@ -85,6 +85,27 @@ class Mapping
     }
 
     /**
+     * @param $matchs
+     * @return mixed
+     */
+    public function filterImportantMatchs($matchs)
+    {
+        $result = [];
+        foreach ($matchs as $key => $match) {
+            $match = $this->matchMapping($match);
+            if (property_exists($match, 'competition') && property_exists($match->competition, 'name') ) {
+                $match->competitionName = $match->competition->name;
+            }
+            if ($match->status == 'FINISHED' &&
+                (in_array($match->homeTeam->id, TeamEnum::getImportantTeams())
+                    || in_array($match->awayTeam->id, TeamEnum::getImportantTeams()))) {
+                $result[] = $match;
+            }
+        }
+        return $result;
+    }
+
+    /**
      * @param $data
      * @param $id
      * @return null
