@@ -12,8 +12,9 @@
 */
 
 $router->get('/', function () {
-    return 'hello world';
+    return 'Hello world';
 });
+$router->get('/matches/important', 'Controller@getLastPlayedImportantMatches');
 
 $router->get('/competitions/{id}/matches', 'Controller@getCompetionMatches');
 $router->get('/competitions/{id}/matches/{matcheId}', 'Controller@getCompetionMatche');
@@ -21,5 +22,4 @@ $router->get('/competitions/{id}/standings', 'Controller@getCompetionStanding');
 $router->get('/competitions/{id}/scorers', 'Controller@getCompetionScorers');
 $router->get('/matches/today', 'Controller@getTodayMatches');
 $router->get('/news', 'Controller@getNews');
-$router->get('/test', 'Controller@call');
 

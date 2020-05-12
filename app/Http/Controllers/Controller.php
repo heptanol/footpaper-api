@@ -107,4 +107,15 @@ class Controller extends BaseController
             ['Access-Control-Allow-Origin' => '*']
         );
     }
+
+    public function getLastPlayedImportantMatches(Request $request)
+    {
+        $response = app(AppService::class)->getLastPlayedImportantMatches();
+
+        return \response()->json(
+            json_decode($response),
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
+    }
 }

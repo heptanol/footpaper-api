@@ -22,7 +22,7 @@ class HttpClient
     }
 
 
-    public function getRessources(string $uri, $ttl = 300)
+    public function getRessources($uri, $ttl = 3000)
     {
 
         if (app('redis')->exists('temp_'.$uri)) {
@@ -50,7 +50,7 @@ class HttpClient
         return $result;
     }
 
-    public function getResourceFromApi(string $uri, $ttl = 300)
+    public function getResourceFromApi(string $uri, $ttl = 3000)
     {
         try {
             $result = $this->guzzleClient->get($this->apiUrl . $uri);
