@@ -24,5 +24,6 @@ ADD ./docker/conf/apache.conf /etc/apache2/conf-available/z-app.conf
 RUN a2enconf z-app
 
 COPY . /app
+COPY ./.env.prod /app/.env
 RUN chown -R www-data:www-data /app/
 RUN chmod 755 /app

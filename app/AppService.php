@@ -119,10 +119,9 @@ class AppService
     {
         $entries = array();
         foreach($this->feeds[$lang] as $feed) {
-            $xml = simplexml_load_file($feed);
+            $xml = simplexml_load_file($feed, "SimpleXMLElement", LIBXML_NOCDATA);
             $entries = array_merge($entries, $xml->xpath("//item"));
         }
-
         return json_encode($entries);
     }
 }
